@@ -1,0 +1,40 @@
+{
+  "name": "pulse",
+  "version": "1.0.0",
+  "description": "Social Tech Interview Platform",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/server.js",
+    "build": "webpack",
+    "dev": "webpack-dev-server --hot --open",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/squirtleSquad-cs/pulse.git"
+  },
+  "keywords": [
+    "social",
+    "media",
+    "interview"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/squirtleSquad-cs/pulse/issues"
+  },
+  "homepage": "https://github.com/squirtleSquad-cs/pulse#readme",
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.8.2",
+    "postcss-loader": "^7.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router": "^6.3.0"
+  },
+  "devDependencies": {
+    "css-loader": "^6.7.1",
+    "sass-loader": "^13.0.0",
+    "style-loader": "^3.3.1",
+    "ts-loader": "^9.3.0"
+  }
+}
