@@ -14,6 +14,10 @@ app.get("/", (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, "../index.html"));
 });
 
+app.use('/calendar', calendarRouter);
+app.use('/login', loginRouter);
+
+
 // Individual Error Handling
 app.use((req, res) =>
   res.status(404).send("This is not the page you're looking for...")
