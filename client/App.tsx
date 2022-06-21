@@ -7,12 +7,12 @@ class App extends Component {
     super(props);
   }
   render() {
-    return(
-    <div>
-      <CalendarBoard></CalendarBoard>
-      <NavBar></NavBar>
+    return (
+      <div>
+        <CalendarBoard></CalendarBoard>
+        <NavBar></NavBar>
       </div>
-    )
+    );
   }
 }
 
