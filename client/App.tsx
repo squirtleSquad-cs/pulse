@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import CalendarBoard from "./components/CalendarBoard";
-import NavBar from "./components/NavBar";
+// import NavBar from "./components/NavBar";
 
 class App extends Component {
   constructor(props: any) {
@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <div>
         <CalendarBoard></CalendarBoard>
-        <NavBar></NavBar>
+        {/* <NavBar></NavBar> */}
       </div>
     );
   }

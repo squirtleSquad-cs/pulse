@@ -1,8 +1,7 @@
 import React from "react";
 import CalendarBoard from "./CalendarBoard";
 
-class NavBar extends React.Component {
-  render() {
+function renderNavBar() {
     return (
       <div className="calendar-navBar">
         <div className="calendar-navBar-section">
@@ -25,14 +24,13 @@ class NavBar extends React.Component {
         </div>
         <div className="calendar-navBar-section">
           <h2>All Events ({this.props.events.length})</h2>
-          <ul>{this.props.events.map(renderSidebarEvent)}</ul>
+          <ul>{this.props.events.map(renderNavBarEvent)}</ul>
         </div>
       </div>
     );
-  }
-}
+};
 
-function renderSidebarEvent(plainEventObject) {
+function renderNavBarEvent(plainEventObject) {
   return (
     <li key={plainEventObject.id}>
       <b>
@@ -47,4 +45,6 @@ function renderSidebarEvent(plainEventObject) {
   );
 }
 
-export default NavBar;
+// export { renderNavBar as default, renderNavBarEvent as renderNavBarEvent };
+
+// renderNavBarEvent;
