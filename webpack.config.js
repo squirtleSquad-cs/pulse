@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: {
     //where our bundling of react components start
-    main: path.resolve(__dirname, './client/index.ts'),
+    main: path.resolve(__dirname, './client/index.tsx'),
   },
   output: {
     //name the file 
@@ -47,7 +47,7 @@ module.exports = {
   mode: 'development',
   resolve: {
     // Enable importing JS / JSX files without specifying their extension
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   devServer: {
     hot: true,
@@ -58,7 +58,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html',
+      template: './index.html',
     })
   ]
 };

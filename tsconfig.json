@@ -1,12 +1,13 @@
 {
-    "compilerOptions": {
-      "outDir": "./build",
-      "allowJs": true,
-      "target": "es5",
-      "noImplicitAny": true,
-      "module": "ES6",
-      "jsx": "react",
-      "moduleResolution": "node"
-    },
-    "include": ["./client/**/*"]
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "outDir": "./build",
+    "allowJs": true,
+    "target": "es5",
+    "noImplicitAny": true,
+    "module": "ES6",
+    "jsx": "react",
+    "moduleResolution": "node"
+  },
+  "include": ["./client/**/*"]
 }
