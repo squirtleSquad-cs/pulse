@@ -1,11 +1,18 @@
 import React, { Component } from "react";
+import CalendarBoard from "./components/CalendarBoard";
+import NavBar from "./components/NavBar";
 
 class App extends Component {
   constructor(props: any) {
     super(props);
   }
   render() {
-    return <h1> Hello </h1>;
+    return(
+    <div>
+      <CalendarBoard></CalendarBoard>
+      <NavBar></NavBar>
+      </div>
+    )
   }
 }
 
