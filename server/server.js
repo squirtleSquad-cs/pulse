@@ -6,17 +6,9 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Connect to Mongo DB
-mongoose.connect("localhost:27017");
-
-// Static Default
-app.get("/", (req, res) => {
-  return res.status(200).sendFile(path.join(__dirname, "../index.html"));
-});
-
-app.use('/calendar', calendarRouter);
-app.use('/login', loginRouter);
-
+app.use(express.static("../index.html"));
+// app.use('/calendar', calendarRouter);
+// app.use('/login', loginRouter);
 
 // Individual Error Handling
 app.use((req, res) =>
