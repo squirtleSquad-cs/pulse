@@ -1,27 +1,41 @@
-const User = require ('../models/nosqlModel')
+const { useTransition } = require("react");
+const User = require("../models/nosqlModel");
 
 // Declare controller object for controller methods
-// User is already in DB, username and password sent to the server, server sends that to sql, will check if that exists, 
-// and if it does exist it'll take whatever mongoDB value corresponds with the user, and 
-// send that value in the request body over to Mongo DB to request that specific user's interviews array. 
+// User is already in DB, username and password sent to the server, server sends that to sql, will check if that exists,
+// and if it does exist it'll take whatever mongoDB value corresponds with the user, and
+// send that value in the request body over to Mongo DB to request that specific user's interviews array.
 
 const userController = {};
 
 // Will return array of userEvents(interviews)
 userController.getEvents = async (req, res, next) => {
-  const { value } = req.body;
+  const { username } = res.cookies;
   try {
-    if (value) {
-      const interviewArr = await User.findOne({value})
+    if (username) {
+      const interviewArr = await User.findOne({ username });
       res.locals.interviews = interviewArr;
-      return next()
+      return next();
     }
-  } catch(err) {
-    return next ({
-        log: 'Issue with getEvents',
-        message: {err: 'Fix getEvents method in userController'}
-    })
-  }}
+  } catch (err) {
+    return next({
+      log: "Issue with getEvents",
+      message: { err: "Fix getEvents method in userController" },
+    });
+  }
+};
 
+calendarController.addEvents = async (req, res, next) => {
+  const username = res.cookies;
+  const { events } = req.body;
+  Data.replaceOne(
+    { username: username },
+    { username: username, events: events },
+    function (err, user) {
+      if (err) return next("err in mongo");
+      return next();
+    }
+  );
+};
 
 module.exports = userController;
