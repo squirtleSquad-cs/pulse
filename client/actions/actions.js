@@ -3,6 +3,8 @@ import {
   requestEventCreate,
   requestEventUpdate,
   requestEventDelete,
+  requestUserLogin,
+  requestRegisterUser,
 } from "../requests";
 
 export default {
@@ -60,4 +62,26 @@ export default {
       });
     };
   },
+
+// this will get triggered by the on click button on the login component 
+   login() {
+    return (dispatch) => {
+      return requestUserLogin().then(() => {
+        dispatch({
+          type: "LOGIN_USER",
+        });
+      });
+    };
+  },
+
+  registerUser() {
+    return (dispatch) => {
+      return requestRegisterUser().then(() => {
+        dispatch({
+          type: "REGISTER_USER",
+        });
+      });
+    };
+  },
+
 };

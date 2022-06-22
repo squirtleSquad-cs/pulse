@@ -8,15 +8,16 @@ import interactionPlugin from "@fullcalendar/interaction";
 import actionCreators from "../actions/actions";
 import { getHashValues } from "../utils";
 
-
 class CalendarBoard extends React.Component {
   render() {
+    console.log(this.props);
     return (
       <div className="pulse-calendar">
         {this.renderNavBar()}
         <div className="calendar-main">
           <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+            themeSystem="Yeti"
             headerToolbar={{
               left: "prev, next today",
               center: "title",
@@ -41,7 +42,7 @@ class CalendarBoard extends React.Component {
       </div>
     );
   }
-  
+
   renderNavBar() {
     return (
       <div className="calendar-navBar">
@@ -69,9 +70,9 @@ class CalendarBoard extends React.Component {
         </div>
       </div>
     );
-  };
-  
-// handlers for user actions
+  }
+
+  // handlers for user actions
   handleDateSelect = (selectInfo) => {
     let calendarApi = selectInfo.view.calendar;
     let title = prompt("Please enter a new title for your event");

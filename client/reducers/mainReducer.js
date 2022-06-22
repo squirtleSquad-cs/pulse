@@ -6,6 +6,7 @@ export default combineReducers({
   eventsById,
 });
 
+
 function weekendsVisible(weekendsVisible = true, action) {
   switch (action.type) {
     case "TOGGLE_WEEKENDS":
@@ -35,5 +36,15 @@ function eventsById(eventsById = {}, action) {
 
     default:
       return eventsById;
+  }
+}
+
+function userData(initialData = [], action) {
+  switch (action.type) {
+    case "LOGIN_USER":
+      return initialData=...;
+
+    default:
+      return initialData = [];
   }
 }
