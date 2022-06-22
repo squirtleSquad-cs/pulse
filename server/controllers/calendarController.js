@@ -6,10 +6,10 @@ const User = require("../models/nosqlModel");
 // and if it does exist it'll take whatever mongoDB value corresponds with the user, and
 // send that value in the request body over to Mongo DB to request that specific user's interviews array.
 
-const userController = {};
+const calendarController = {};
 
 // Will return array of userEvents(interviews)
-userController.getEvents = async (req, res, next) => {
+calendarController.getEvents = async (req, res, next) => {
   const { username } = res.cookies;
   try {
     if (username) {
@@ -38,4 +38,4 @@ calendarController.addEvents = async (req, res, next) => {
   );
 };
 
-module.exports = userController;
+module.exports = calendarController;

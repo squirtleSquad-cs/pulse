@@ -64,9 +64,10 @@ export default {
   },
 
 // this will get triggered by the on click button on the login component 
-   login() {
+   userLogin() {
     return (dispatch) => {
       return requestUserLogin().then(() => {
+        console.log('post-dispatch', data),
         dispatch({
           type: "LOGIN_USER",
         });
