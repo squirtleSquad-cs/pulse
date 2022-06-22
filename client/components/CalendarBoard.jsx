@@ -8,10 +8,12 @@ import interactionPlugin from "@fullcalendar/interaction";
 import actionCreators from "../actions/actions";
 import { getHashValues } from "../utils";
 
+
 class CalendarBoard extends React.Component {
   render() {
     return (
       <div className="pulse-calendar">
+        {this.renderNavBar()}
         <div className="calendar-main">
           <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
@@ -39,6 +41,37 @@ class CalendarBoard extends React.Component {
       </div>
     );
   }
+  
+  renderNavBar() {
+    return (
+      <div className="calendar-navBar">
+        <div className="calendar-navBar-section">
+          <h2>Instructions</h2>
+          <ul>
+            <li>Select dates and you will be prompted to create a new event</li>
+            <li>Drag, drop, and resize events</li>
+            <li>Click an event to delete it</li>
+          </ul>
+        </div>
+        <div className="calendar-navBar-section">
+          <label>
+            <input
+              type="checkbox"
+              checked={this.props.weekendsVisible}
+              onChange={this.props.toggleWeekends}
+            ></input>
+            toggle weekends
+          </label>
+        </div>
+        <div className="calendar-navBar-section">
+          <h2>All Events ({this.props.events.length})</h2>
+          <ul>{this.props.events.map(renderNavBarEvent)}</ul>
+        </div>
+      </div>
+    );
+  };
+  
+// handlers for user actions
   handleDateSelect = (selectInfo) => {
     let calendarApi = selectInfo.view.calendar;
     let title = prompt("Please enter a new title for your event");
@@ -105,6 +138,21 @@ function renderEventContent(eventContent) {
       <b>{eventContent.timeText}</b>
       <i>{eventContent.event.title}</i>
     </>
+  );
+}
+
+function renderNavBarEvent(plainEventObject) {
+  return (
+    <li key={plainEventObject.id}>
+      <b>
+        {formatDate(plainEventObject.start, {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        })}
+      </b>
+      <i>{plainEventObject.title}</i>
+    </li>
   );
 }
 
