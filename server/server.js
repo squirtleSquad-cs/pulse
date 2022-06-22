@@ -7,8 +7,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static("../index.html"));
-// app.use('/calendar', calendarRouter);
-// app.use('/login', loginRouter);
+app.use('/calendar', calendarRouter);
+app.use('/login', loginRouter);
 
 // Individual Error Handling
 app.use((req, res) =>
