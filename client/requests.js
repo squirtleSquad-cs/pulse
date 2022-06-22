@@ -29,6 +29,8 @@ document.addEventListener('keypress', (ev) => {
   }
 })
 
+
+
 export function requestEventsInRange(startStr, endStr) {
   console.log(`[STUB] requesting events from ${startStr} to ${endStr}`)
 
@@ -90,6 +92,51 @@ export function requestEventDelete(eventId) {
     }, DELAY)
   })
 }
+
+
+export function requestUserLogin() {
+  console.log('user log in request')
+    fetch('/login/check', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'Application/JSON',
+      },
+      body: JSON.stringify({
+        username: document.querySelector('#Username').value,
+        password: document.querySelector('#Password').value,
+      })
+    })
+    .then((resp) => resp.json())
+    .then((data) => {
+      // user interview data.userStuff
+      dispatch(data.userStuff)
+      })
+    .catch((err) => {
+      console.log('Login page: user not found', err)
+      })
+  };
+
+export function requestRegisterUser() {
+  console.log('user log in request')
+    fetch('/login/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'Application/JSON',
+      },
+      body: JSON.stringify({
+        username: document.querySelector('#Username').value,
+        password: document.querySelector('#Password').value,
+      })
+    })
+    .then((resp) => resp.json())
+    .then((data) => {
+      // update our state with the hooks we defined earlier
+      })
+    .catch((err) => {
+      console.log('Login page: user not found', err)
+      })
+  };
+
 
 function createEventId() {
   return String(eventGuid++)

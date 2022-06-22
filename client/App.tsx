@@ -9,8 +9,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <CalendarBoard></CalendarBoard>
-        {/* <NavBar></NavBar> */}
+        <CalendarBoard />
       </div>
     );
   }
