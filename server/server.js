@@ -3,6 +3,10 @@ const path = require("path");
 const PORT = 3000;
 const mongoose = require("mongoose");
 const app = express();
+
+const calendarRouter = require("./routes/calendarRouter");
+const loginRouter = require("./routes/loginRouter");
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

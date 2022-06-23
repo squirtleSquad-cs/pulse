@@ -7,10 +7,10 @@ const calendarController = require("../controllers/calendarController");
 router.post(
   "/check",
   loginController.checkLogin,
-  cookieController.setCookie,
   calendarController.getEvents,
+  cookieController.setCookie,
   (req, res) => {
-    res.status(200).json("Login successful");
+    res.status(200).json(res.locals.events)
   }
 );
 

@@ -1,11 +1,16 @@
+import React from "react";
 import { excludeById, getTodayStr } from './utils'
+import { Routes, Route, Link, useNavigate } from 'react-router-dom'
 
-/*
-functions that simulate network requests
-*/
-
+let loggedIn = false;
 let todayStr = getTodayStr()
+// EventGuid is event index within eventDb
 let eventGuid = 0
+// creates id for each object
+function createEventId() {
+  return String(eventGuid++)
+}
+// EventDb will hold all events for users
 let eventDb = [
   {
     id: createEventId(),
@@ -19,29 +24,11 @@ let eventDb = [
   }
 ]
 
-const DELAY = 200
-let simulateErrors = false
-
-document.addEventListener('keypress', (ev) => {
-  if (ev.key === 'e') {
-    alert('You pressed the key "e". Will begin to simulate errors.')
-    simulateErrors = true
-  }
-})
-
-
-
 export function requestEventsInRange(startStr, endStr) {
   console.log(`[STUB] requesting events from ${startStr} to ${endStr}`)
 
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (simulateErrors) {
-        reject(new Error('error'))
-      } else {
         resolve(eventDb) // won't use the start/end, always return whole DB
-      }
-    }, DELAY)
   })
 }
 
@@ -49,32 +36,20 @@ export function requestEventCreate(plainEventObject) {
   console.log('[STUB] requesting event create:', plainEventObject)
 
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (simulateErrors) {
-        reject(new Error('error'))
-      } else {
         let newEventId = createEventId()
         let objWithId = {...plainEventObject, id: newEventId}
         eventDb.push(objWithId)
         resolve(newEventId)
-      }
-    }, DELAY)
-  })
+      })
 }
 
 export function requestEventUpdate(plainEventObject) {
   console.log('[STUB] requesting event update:', plainEventObject)
 
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (simulateErrors) {
-        reject(new Error('problem'))
-      } else {
         eventDb = excludeById(eventDb, plainEventObject.id)
         eventDb.push(plainEventObject)
         resolve(eventDb)
-      }
-    }, DELAY)
   })
 }
 
@@ -82,14 +57,8 @@ export function requestEventDelete(eventId) {
   console.log('[STUB] requesting event delete, id:', eventId)
 
   return new Promise((resolve, reject) => {
-    setTimeout(() => { // simulate network delay
-      if (simulateErrors) {
-        reject(new Error('problem'))
-      } else {
         eventDb = excludeById(eventDb, eventId)
         resolve(eventDb)
-      }
-    }, DELAY)
   })
 }
 
@@ -102,15 +71,24 @@ export function requestUserLogin() {
         'Content-Type': 'Application/JSON',
       },
       body: JSON.stringify({
-        username: document.querySelector('#Username').value,
-        password: document.querySelector('#Password').value,
+        username: document.querySelector('#username').value,
+        password: document.querySelector('#password').value,
       })
     })
     .then((resp) => resp.json())
     .then((data) => {
       // user interview data.userStuff
-      dispatch(data.userStuff)
-      })
+      // console.log('predispatch:', data),
+      // navigate('/main')
+      if (data) {
+        loggedIn = true;
+        console.log(loggedIn)
+        // const navigate = useNavigate();
+        return <redirect to="/main"/>
+        dispatch(data.events)
+      }
+      }
+    )
     .catch((err) => {
       console.log('Login page: user not found', err)
       })
@@ -124,8 +102,8 @@ export function requestRegisterUser() {
         'Content-Type': 'Application/JSON',
       },
       body: JSON.stringify({
-        username: document.querySelector('#Username').value,
-        password: document.querySelector('#Password').value,
+        username: document.querySelector('#username').value,
+        password: document.querySelector('#password').value,
       })
     })
     .then((resp) => resp.json())
@@ -138,6 +116,3 @@ export function requestRegisterUser() {
   };
 
 
-function createEventId() {
-  return String(eventGuid++)
-}

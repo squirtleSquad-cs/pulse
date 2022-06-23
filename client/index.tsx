@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import combineReducers from "./reducers/mainReducer";
 import CalendarBoard from "./components/CalendarBoard";
 import "./styling.css";
+import App from "./App"
 
 let store = configureStore({ reducer: combineReducers });
 // let store = configureStore(combineReducers, applyMiddleware(thunk))
@@ -14,7 +15,8 @@ let store = configureStore({ reducer: combineReducers });
 document.addEventListener("DOMContentLoaded", function () {
   render(
     <Provider store={store}>
-      <CalendarBoard />
+      <App />
+      {/* <CalendarBoard/> */}
     </Provider>,
     document.body.appendChild(document.createElement("div"))
   );

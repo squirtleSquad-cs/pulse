@@ -19,9 +19,11 @@ function weekendsVisible(weekendsVisible = true, action) {
 
 function eventsById(eventsById = {}, action) {
   switch (action.type) {
+   
     case "RECEIVE_EVENTS":
       return hashById(action.plainEventObjects);
 
+    case "LOGIN_USER":
     case "CREATE_EVENT":
     case "UPDATE_EVENT":
       return {
@@ -39,12 +41,12 @@ function eventsById(eventsById = {}, action) {
   }
 }
 
-function userData(initialData = [], action) {
-  switch (action.type) {
-    case "LOGIN_USER":
-      return initialData=...;
+// function userData(userData = '', action) {
+//   switch (action.type) {
+//     case "LOGIN_USER":
+//       return initialData= [];
 
-    default:
-      return initialData = [];
-  }
-}
+//     default:
+//       return initialData = [];
+//   }
+// }
