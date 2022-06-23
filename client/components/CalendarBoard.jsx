@@ -47,12 +47,8 @@ class CalendarBoard extends React.Component {
     return (
       <div className="calendar-navBar">
         <div className="calendar-navBar-section">
-          <h2>Instructions</h2>
-          <ul>
-            <li>Select dates and you will be prompted to create a new event</li>
-            <li>Drag, drop, and resize events</li>
-            <li>Click an event to delete it</li>
-          </ul>
+          <h1>Pulse Calendar</h1>
+       
         </div>
         <div className="calendar-navBar-section">
           <label>

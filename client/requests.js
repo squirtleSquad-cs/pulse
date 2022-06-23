@@ -84,7 +84,7 @@ export function requestUserLogin() {
         loggedIn = true;
         console.log(loggedIn)
         // const navigate = useNavigate();
-        return <redirect to="http://localhost:8080/main"/>
+        return <redirect to="/main"/>
         dispatch(data.events)
       }
       }
