@@ -1,7 +1,8 @@
 // @ts-nocheck
 import React, { Component } from "react";
 import CalendarBoard from "./components/CalendarBoard";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as  Router, Routes, Route } from "react-router-dom";
+// import { Router, Switch, BrowserRouter, Route, Routes } from 'react-router-dom'
 import Login from './components/Login'
 import { connect } from "react-redux";
 import mapDispatchToProps from "./actions/actions";
@@ -18,20 +19,20 @@ const mapStateToProps = state => {
 }
 
 class App extends Component {
-  constructor(props: any) {
+  constructor(props) {
     super(props);
   }
   render() {
     console.log('Props in App', this.props)
     return (
-      <div>
+      // <div className = "router">
         <Router>
             <Routes>
               <Route path="/" element={<Login userLogin={this.props.userLogin} registerUser={this.props.registerUser}/>} />
-              <Route path="/main/" element={<CalendarBoard />} />
+              <Route path="/main" element={<CalendarBoard />} />
            </Routes>
         </Router>
-      </div>
+      // </div>
     );
   }
 }

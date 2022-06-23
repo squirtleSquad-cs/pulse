@@ -1,5 +1,8 @@
+import React from "react";
 import { excludeById, getTodayStr } from './utils'
+import { Routes, Route, Link, useNavigate } from 'react-router-dom'
 
+let loggedIn = false;
 let todayStr = getTodayStr()
 // EventGuid is event index within eventDb
 let eventGuid = 0
@@ -68,17 +71,24 @@ export function requestUserLogin() {
         'Content-Type': 'Application/JSON',
       },
       body: JSON.stringify({
-        username: document.querySelector('#Username').value,
-        password: document.querySelector('#Password').value,
+        username: document.querySelector('#username').value,
+        password: document.querySelector('#password').value,
       })
     })
     .then((resp) => resp.json())
     .then((data) => {
       // user interview data.userStuff
-      console.log('predispatch', data),
-      dispatch(data.userStuff)
-   
-      })
+      // console.log('predispatch:', data),
+      // navigate('/main')
+      if (data) {
+        loggedIn = true;
+        console.log(loggedIn)
+        // const navigate = useNavigate();
+        return <redirect to="http://localhost:8080/main"/>
+        dispatch(data.events)
+      }
+      }
+    )
     .catch((err) => {
       console.log('Login page: user not found', err)
       })
@@ -104,3 +114,5 @@ export function requestRegisterUser() {
       console.log('Login page: user not found', err)
       })
   };
+
+

@@ -7,9 +7,16 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import "../styling.css"
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 
 
 class Login extends React.Component {
+  // let userVerified = false;
+  // const navigate = useNavigate();
+  // React.useEffect(() => {
+  //   if (shouldRedirect) {
+  //     navigate('/home');
+  //   }
   render() {
     console.log(this.props);
     let { loggedIn, error } = this.props;

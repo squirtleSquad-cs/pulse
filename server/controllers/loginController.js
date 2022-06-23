@@ -7,8 +7,10 @@ const loginController = {};
 
 loginController.checkLogin = (req, res, next) => {
   const { username, password } = req.body;
-  console.log([username, password])
-  const loginQuery = `SELECT * FROM USERS WHERE Username = ${username} AND PASSWORD = ${password}`;
+  // console.log('from login controller:', [username, password])
+  // const loginQuery = `SELECT * FROM USERS WHERE Username = ${username} AND PASSWORD = ${password}`;
+  const query1 = 'SELECT password FROM users WHERE username = $1'
+  const values1 = [username]
   // sql
   //   .query(loginQuery)
   //   .then((data) => {
@@ -21,18 +23,19 @@ loginController.checkLogin = (req, res, next) => {
   //   })
   sql.query(query1, values1)
   .then(sqlRes => {
+    console.log('sqlRes', sqlRes)
     const hash = sqlRes.rows[0].password;
+    console.log(hash)
     bcrypt.compare(password, hash)
       .then(result => {
         console.log('hash result', result)
         if (result) {
-          const query2 = 'SELECT username WHERE username = $1';
           const values2 = [username];
-
-          db.query(query2, values2)
+          User.findOne({username: values2})
             .then((verifiedUser) => {
-              res.locals.user = verifiedUser.rows[0];
-              console.log(verifiedUser)
+              res.locals.userEvents = verifiedUser.events;
+              // console.log('User Events', res.locals.userEvents)
+              // console.log('verified user inside sql query', verifiedUser)
               return next();
             })
             .catch(err => {
@@ -60,7 +63,7 @@ loginController.checkLogin = (req, res, next) => {
 };
 
 loginController.createUser = (req, res, next) => {
-  console.log(["inside create user", req.body]);
+  // console.log(["inside create user", req.body]);
   const { username, password } = req.body;
   // Hash Password
   bcrypt
@@ -130,7 +133,7 @@ loginController.createMongo = async (req, res, next) => {
   console.log("hello from mongo");
   console.log(username)
   await User.create({ username: username }, function (err, user) {
-    console.log("after mongo query", user);
+    // console.log("after mongo query", user);
     if (err) return next("err in mongo");
     return next();
   });

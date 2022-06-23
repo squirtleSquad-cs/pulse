@@ -2,7 +2,9 @@ const cookieController = {};
 
 cookieController.setCookie = (req, res, next) => {
   const { username } = req.body;
-  res.cookie(username);
+  // console.log('in cookie controller', username);
+  // res.cookie('name' , 'username');
+  res.cookie('name' , username)
   next();
 };
 

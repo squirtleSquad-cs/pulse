@@ -15,7 +15,7 @@ mongoose
 
 const dataSchema = new Schema({
   username: { type: String },
-  events: { type: Array, default: [] },
+  events: { type: Array },
 });
 
 const User = mongoose.model("User", dataSchema);
