@@ -10,7 +10,7 @@ router.post(
   calendarController.getEvents,
   cookieController.setCookie,
   (req, res) => {
-    res.status(200).json(res.locals.events)
+    res.status(200).json(res.locals.events);
   }
 );
 
