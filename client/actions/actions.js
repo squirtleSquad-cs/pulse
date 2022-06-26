@@ -46,7 +46,7 @@ export default {
       return requestEventUpdate(plainEventObject).then(() => {
         dispatch({
           type: "UPDATE_EVENT",
-          plainEventObject,
+          payload: plainEventObject,
         });
       });
     };
@@ -57,24 +57,32 @@ export default {
       return requestEventDelete(eventId).then(() => {
         dispatch({
           type: "DELETE_EVENT",
-          eventId,
+          payload: eventId,
         });
       });
     };
   },
 
 // this will get triggered by the on click button on the login component 
-   userLogin() {
+  userLogin() {
     return (dispatch) => {
-      return requestUserLogin().then(() => {
-        console.log('post-dispatch', data),
-        dispatch({
-          type: "LOGIN_USER",
-        });
-      });
-    };
-  },
-
+      const getLoginstate = async () => {
+        const loggedInState = await requestUserLogin();
+        return loggedInState;
+      }
+      getLoginstate()
+        .then((plainEventObjects) => {
+          console.log('please work', plainEventObjects);
+          dispatch({
+            type: "LOGIN_USER",
+            payload: plainEventObjects
+          });
+          window.location.href = '/main';
+          window.location.assign('/main');        
+        })
+        .catch((err) => console.log(err));
+  }},
+  
   registerUser() {
     return (dispatch) => {
       return requestRegisterUser().then(() => {

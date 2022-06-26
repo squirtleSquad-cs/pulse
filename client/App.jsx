@@ -37,8 +37,8 @@ class App extends Component {
       // <div className = "router">
         <Router>
             <Routes>
-              <Route path="/main" element={<Login userLogin={this.props.userLogin} registerUser={this.props.registerUser}/>} />
-              <Route path="/" element={<CalendarBoard />} />
+              <Route path="/" element={<Login userLogin={this.props.userLogin} registerUser={this.props.registerUser}/>} />
+              <Route path="/main" element={<CalendarBoard />} />
            </Routes>
         </Router>
       // </div>

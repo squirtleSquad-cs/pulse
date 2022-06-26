@@ -14,6 +14,10 @@ app.use(express.static("../index.html"));
 app.use('/calendar', calendarRouter);
 app.use('/login', loginRouter);
 
+app.use("*", (req, res) => {
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+});
+
 // Individual Error Handling
 app.use((req, res) =>
   res.status(404).send("This is not the page you're looking for...")

@@ -65,7 +65,7 @@ export function requestEventDelete(eventId) {
 
 export function requestUserLogin() {
   console.log('user log in request')
-    fetch('/login/check', {
+    return fetch('/login/check', {
       method: 'POST',
       headers: {
         'Content-Type': 'Application/JSON',
@@ -77,18 +77,9 @@ export function requestUserLogin() {
     })
     .then((resp) => resp.json())
     .then((data) => {
-      // user interview data.userStuff
-      // console.log('predispatch:', data),
-      // navigate('/main')
-      if (data) {
-        loggedIn = true;
-        console.log(loggedIn)
-        // const navigate = useNavigate();
-        return <redirect to="/main"/>
-        dispatch(data.events)
-      }
-      }
-    )
+      console.log("up to here", data);
+      return data;
+    } )
     .catch((err) => {
       console.log('Login page: user not found', err)
       })

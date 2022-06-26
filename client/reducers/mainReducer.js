@@ -6,7 +6,6 @@ export default combineReducers({
   eventsById,
 });
 
-
 function weekendsVisible(weekendsVisible = true, action) {
   switch (action.type) {
     case "TOGGLE_WEEKENDS":
@@ -18,12 +17,19 @@ function weekendsVisible(weekendsVisible = true, action) {
 }
 
 function eventsById(eventsById = {}, action) {
+  console.log(action);
   switch (action.type) {
    
     case "RECEIVE_EVENTS":
       return hashById(action.plainEventObjects);
 
-    case "LOGIN_USER":
+    case "LOGIN_USER": {
+      console.log(action.payload);
+      return {
+        ...eventsById
+      };
+    }
+     
     case "CREATE_EVENT":
     case "UPDATE_EVENT":
       return {
@@ -40,13 +46,3 @@ function eventsById(eventsById = {}, action) {
       return eventsById;
   }
 }
-
-// function userData(userData = '', action) {
-//   switch (action.type) {
-//     case "LOGIN_USER":
-//       return initialData= [];
-
-//     default:
-//       return initialData = [];
-//   }
-// }
