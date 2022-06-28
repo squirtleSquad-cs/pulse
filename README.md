@@ -7,6 +7,10 @@
 ## Description
 Pulse is a interview tracker for various developers looking for ways to better organize the complexity of juggling multiple job interviews at once, while applying to many companies. 
 
+<p align="center">
+  <img src ="./client/assets/pulse-login3.gif"/>
+</p>
+
 ## Stack
 ### React
 React was a fundamental given for the development team as we felt its unique modularity, would give the frontend and backend teams a smooth foundation to write code, while simultaneously allowing an easier coordination of endpoints between the two teams. React's usage of the Virtual DOM also allows incredibly quick React object manipulation, making an overwhelmingly efficient frontend developer environment, and allows the creation of modular components that smoothed out the engineering process. 
@@ -22,3 +26,31 @@ MongoDB's relative simplicity, allows for an expressive query language that deve
 
 ### Node / Express
 Node and Express was chosen to keep “language consistency" between the frontend and the backend, Express' incredibly versatile Middleware modules, allows for an incredibly performant server environment, and assists in performing efficient server responses and requests. Express is also very customizable, and its massive ecosystem combined with Node, we felt that Express was an obvious choice for our product. 
+
+## Getting Started
+### Clone this repository
+```bash
+git clone https://github.com/squirtleSquad-cs/pulse.git
+```
+
+### Install dependencies
+```bash
+npm install
+```
+
+### Build Webpack
+```bash
+npm run build
+```
+
+### Start an instance
+```bash
+npm start
+```
+
+## <b>Authors</b>
+
+- **David Kim** - [@codejunkie7](https://github.com/codejunkie7)
+- **Shelby Neuman** - [@shelbydneuman](https://github.com/shelbydneuman)
+- **Andrew Park** - [@andrewcpark](https://github.com/andrewcpark)
+- **Eric Komatsu** - [@etkomatsu](https://github.com/etkomatsu)
