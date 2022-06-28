@@ -1,17 +1,23 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
+import { render } from "react-dom";
+import { applyMiddleware } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
+import thunk from "redux-thunk";
 import { Provider } from "react-redux";
-import { store } from "./store";
-import App from "./App";
-// import "./index.css";
+import combineReducers from "./reducers/mainReducer";
+import CalendarBoard from "./components/CalendarBoard";
+import "./styling.css";
+import App from "./App"
 
-const container = document.getElementById("root")!;
-const root = createRoot(container);
+let store = configureStore({ reducer: combineReducers });
+// let store = configureStore(combineReducers, applyMiddleware(thunk))
 
-root.render(
-  <React.StrictMode>
+document.addEventListener("DOMContentLoaded", function () {
+  render(
     <Provider store={store}>
       <App />
-    </Provider>
-  </React.StrictMode>
-);
+      {/* <CalendarBoard/> */}
+    </Provider>,
+    document.body.appendChild(document.createElement("div"))
+  );
+});
